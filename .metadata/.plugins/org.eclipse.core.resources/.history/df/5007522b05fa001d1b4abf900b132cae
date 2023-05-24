@@ -1,0 +1,16 @@
+class KimJu : 
+    def __init__(self):
+        self.cnt_nuclear = 200
+        
+    def aoji(self):
+        self.cnt_nuclear += 1
+        
+    def __del__(self):
+        print("소멸자")
+        
+if __name__ == '__main__':
+    kju = KimJu()
+    print(kju.cnt_nuclear)
+    kju.aoji()
+    print(kju.cnt_nuclear)
+    

@@ -1,0 +1,9 @@
+from day03.myoop01 import Animal
+
+class human(Animal):
+    def __init__(self):
+        flagLang = False
+        Animal.__init__(self)
+        
+    def momtouch(self):
+        

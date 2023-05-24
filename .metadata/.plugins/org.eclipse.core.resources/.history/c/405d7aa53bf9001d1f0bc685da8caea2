@@ -1,0 +1,12 @@
+from random import random
+
+lotto = range(1,46)
+
+for i in range(99) :
+    rnd = int(random()*9)
+    a = arr9[0]
+    arr9[0]=arr9[rnd]
+    arr9[rnd] =a
+
+print(arr9)
+

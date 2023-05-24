@@ -1,0 +1,9 @@
+class Animal :
+    def __init__(self):
+        self.age = 0
+        
+    def add(self,num):
+        self.age += num
+        return age.result
+        
+human = Animal()

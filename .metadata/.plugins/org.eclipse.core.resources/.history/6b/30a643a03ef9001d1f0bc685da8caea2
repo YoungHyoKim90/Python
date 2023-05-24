@@ -1,0 +1,11 @@
+from random import random
+
+arr9 = [1, 2, 3, 4, 5, 6]
+
+for i in range(45):
+    rnd = int(random() * 45)
+    a = arr9[0]
+    arr9[0] = arr9[rnd]
+    arr9[rnd] = a
+
+print(arr9)

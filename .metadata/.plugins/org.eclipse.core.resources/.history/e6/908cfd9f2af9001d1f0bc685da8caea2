@@ -1,0 +1,12 @@
+from random import random
+
+com = ""
+rnd = random()
+print(rnd)
+if rnd >= 0.5 :
+    print("홀")
+    
+else :
+    print("짝")
+
+print("com",com)

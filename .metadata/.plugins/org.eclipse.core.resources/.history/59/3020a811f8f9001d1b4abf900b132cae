@@ -1,0 +1,14 @@
+from random import random
+
+a = input("숫자를 입력해 주세요.")
+aa = int(a)
+def getHollJjak():
+    rnd = random()
+    if rnd %2 == 0:
+        print("짝")
+    else :
+        print("홀")
+
+
+com = getHollJjak(aa)
+print("com : ",com)

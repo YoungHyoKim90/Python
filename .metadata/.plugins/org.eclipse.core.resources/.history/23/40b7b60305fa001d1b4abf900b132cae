@@ -1,0 +1,6 @@
+class KimJu : 
+    def __init__(self):
+        self.cnt_nuclear = 200
+        
+    def aoji(self):
+        self.cnt_nuclear += 1

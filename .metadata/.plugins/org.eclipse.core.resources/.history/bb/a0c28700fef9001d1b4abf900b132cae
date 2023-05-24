@@ -1,0 +1,19 @@
+from Demos.dde.ddeclient import sl
+class Animal :
+    def __init__(self):
+        self.age = 0
+        
+    def add(self,num):
+        self.age += num
+        return self.age
+        
+human = Animal()
+
+print(human.add(1))
+
+class Human :
+    def __init__(self):
+        self.age = 0
+        
+    def add(self,num):
+        sl

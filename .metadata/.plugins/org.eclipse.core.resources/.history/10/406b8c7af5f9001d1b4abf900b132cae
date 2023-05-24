@@ -1,0 +1,6 @@
+def showDan(dan):
+    for i in showDan(1,10)
+    print("{}*{}={}".format(dan,i,i*dan))
+
+    
+showDan(6)

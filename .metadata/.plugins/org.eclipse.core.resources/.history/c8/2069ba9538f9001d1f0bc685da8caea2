@@ -1,0 +1,15 @@
+#출력할 단수를 입력하세요.
+a = input("궁금한 단수를 입력하세요.")
+aa =int(a)
+
+b = range(1,10)
+
+arr = [b]
+print(arr)
+
+sum = 0;
+
+for i in arr:
+    sum *= i
+    print("곱해지는 i값" , i ,"을 더합니다.")
+    print("sum의 변화" , sum)

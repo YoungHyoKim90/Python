@@ -1,0 +1,10 @@
+arr = range(11)
+
+sum = 0;
+
+for i in arr :
+    sum += i
+    print("sum의 변화" , sum)
+
+print(sum)
+    

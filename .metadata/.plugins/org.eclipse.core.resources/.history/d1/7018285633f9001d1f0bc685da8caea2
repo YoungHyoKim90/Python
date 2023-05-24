@@ -1,0 +1,3 @@
+arr=range(3)
+
+print(arr)
