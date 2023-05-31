@@ -1,21 +1,29 @@
-import cx_Oracle
+import cx_Oracle as cx
+        
+def my_insert(e_id, e_name=None, gen=None, addr=None):
+    # DB 연결하기
+    conn = cx.connect("python","python","127.0.01:1521/XE") 
+    cur = conn.cursor()
 
-
-conn = cx_Oracle.connect('python/python@localhost:1521/xe')
-cs = conn.cursor()
-
-df_list = df.to_records(index=False)
-
-rs.executemany("INSERT INTO emp (e_id,e_name,gen,addr) VALUES ('3','3','3','3')",
-            df_list, batcherrors = True)
-
-rs = cs.execute(sql)
-
-for r in rs:
-    print(r)
+    ### 쿼리문 작성 후 작성 후 실행
+        
+    ## 1번 방식
+    # sql = """insert into emp(e_id, e_name, gen, addr)
+    #          values(:1,:2,:3,:4)""" 
+    # cur.execute(sql,[e_id, e_name, gen, addr]) #[값]
     
-con.commit()
+    ## 2번 방식
+    sql = f"""
+        insert into emp
+            (e_id, e_name, gen, addr)
+        values
+            ('{e_id}','{e_name}','{gen}','{addr}')
+        """ 
+    cur.execute(sql) #[값]
+    conn.commit()
     
-cs.close()
-conn.close()
+    cur.close()
+    conn.close()
 
+# main
+my_insert('4', '4', '4', '4')

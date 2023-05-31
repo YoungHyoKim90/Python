@@ -11,10 +11,8 @@ addr = "4"
 
 # INSERT 문 실행
 sql = f"""
-    INSERT INTO emp 
-    (e_id, e_name, gen, addr)
-    VALUES 
-    ('{e_id}', '{e_name}', '{gen}', '{addr}')
+    update emp set 
+e_name = '{e_name}', gen = '{gen}', addr ='{addr}'where e_id = '{e_id}';
 """
 
 
