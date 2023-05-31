@@ -1,35 +1,39 @@
 -- VERSION_5
 -- START DISKCACHE_3
 C:\workspace_python\.metadata\.plugins\org.eclipse.core.resources\.projects\test\com.python.pydev.analysis\v2_indexcache
-test01.__init__|1684886504178098400|C:\workspace_python\test\test01|^
-test01.mytest08|1684886504165133300|C:\workspace_python\test\test01\mytest08.py
-test01.mytest07|1684886504148178700|C:\workspace_python\test\test01\mytest07.py
-test01.mytest09|1684886504178098400|C:\workspace_python\test\test01\mytest09.py
+testday02.__init__|1684905584788033400|C:\workspace_python\test\testday02|^
+testday02.mytest07|1684886504148178700|C:\workspace_python\test\testday02\mytest07.py
+testday02.mytest08|1684886504165133300|C:\workspace_python\test\testday02\mytest08.py
+testday02.mytest09|1684886504178098400|C:\workspace_python\test\testday02\mytest09.py
+testday02.mydef01|1684905682380312900|C:\workspace_python\test\testday02\mydef01.py
 -- END DISKCACHE
 -- START DICTIONARY
-6
-5=C:\workspace_python\test\test01\mytest09.py
-1=C:\workspace_python\test\test01\mytest07.py
-3=C:\workspace_python\test\test01\mytest08.py
-4=test01.mytest08
-2=test01.mytest07
-6=test01.mytest09
+8
+1=C:\workspace_python\test\testday02\mytest07.py
+3=C:\workspace_python\test\testday02\mytest08.py
+2=testday02.mytest07
+4=testday02.mytest08
+5=C:\workspace_python\test\testday02\mydef01.py
+8=testday02.mytest09
+7=C:\workspace_python\test\testday02\mytest09.py
+6=testday02.mydef01
 -- END DICTIONARY
 -- START TREE 1
-13
+14
 a|2|a!1^7#1*19@a!3^7#1*35@
 aa|1|aa!1^11#1*19@
+add|1|add!5^1#5*50@
 arr|1|arr!1^14#1*19@
 b|1|b!1^8#1*19@
 bb|1|bb!1^12#1*19@
 c|1|c!1^9#1*19@
 cc|1|cc!1^13#1*19@
-com|2|com!3^8#1*35@com!5^19#1*51@
-cou|1|count!5^27#1*51@
+com|2|com!3^8#1*35@com!7^19#1*67@
+cou|1|count!7^27#1*67@
 res|1|res!3^11#1*35@
 rnd|1|rnd!3^10#1*35@
-sum|1|sum!1^15#1*19@
-use|2|userNum!5^23#1*51@user!5^22#1*51@
+sum|2|sum!5^4#1*51@sum!1^15#1*19@
+use|2|userNum!7^23#1*67@user!7^22#1*67@
 -- END TREE
 -- START TREE 2
 0

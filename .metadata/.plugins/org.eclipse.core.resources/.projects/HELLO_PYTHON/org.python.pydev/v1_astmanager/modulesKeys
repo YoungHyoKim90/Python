@@ -33,6 +33,7 @@ day02.mytest08_03|C:\workspace_python\HELLO_PYTHON\day02\mytest08_03.py
 day02.mytest09|C:\workspace_python\HELLO_PYTHON\day02\mytest09.py
 day02.mytest09_02|C:\workspace_python\HELLO_PYTHON\day02\mytest09_02.py
 day02.mytest09_03|C:\workspace_python\HELLO_PYTHON\day02\mytest09_03.py
+day03.__init__|C:\workspace_python\HELLO_PYTHON\day03|^
 day03.mydef01|C:\workspace_python\HELLO_PYTHON\day03\mydef01.py
 day03.mydef02|C:\workspace_python\HELLO_PYTHON\day03\mydef02.py
 day03.mydef03|C:\workspace_python\HELLO_PYTHON\day03\mydef03.py
@@ -43,4 +44,7 @@ day03.myoop02|C:\workspace_python\HELLO_PYTHON\day03\myoop02.py
 day03.myoop03|C:\workspace_python\HELLO_PYTHON\day03\myoop03.py
 day03.myoop04|C:\workspace_python\HELLO_PYTHON\day03\myoop04.py
 day03.myoop05|C:\workspace_python\HELLO_PYTHON\day03\myoop05.py
+day03.mytest01|C:\workspace_python\HELLO_PYTHON\day03\mytest01.py
 day03.mywhile|C:\workspace_python\HELLO_PYTHON\day03\mywhile.py
+day06.__init__|C:\workspace_python\HELLO_PYTHON\day06|^
+day06.main01|C:\workspace_python\HELLO_PYTHON\day06\main01.py
