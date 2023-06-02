@@ -1,6 +1,0 @@
-arr=range(99)
-
-print(arr)
-
-for i in arr :
-    print(i)

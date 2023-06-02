@@ -1,3 +1,0 @@
-arr=range(5)
-
-print(arr)

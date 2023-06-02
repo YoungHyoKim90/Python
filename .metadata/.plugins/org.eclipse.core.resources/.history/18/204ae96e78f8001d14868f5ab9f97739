@@ -1,4 +1,0 @@
-from _ast import If
-a = True
-
-If

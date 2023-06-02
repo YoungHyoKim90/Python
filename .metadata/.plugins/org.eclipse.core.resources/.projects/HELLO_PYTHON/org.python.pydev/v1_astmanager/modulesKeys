@@ -48,3 +48,12 @@ day03.mytest01|C:\workspace_python\HELLO_PYTHON\day03\mytest01.py
 day03.mywhile|C:\workspace_python\HELLO_PYTHON\day03\mywhile.py
 day06.__init__|C:\workspace_python\HELLO_PYTHON\day06|^
 day06.main01|C:\workspace_python\HELLO_PYTHON\day06\main01.py
+day06.main08|C:\workspace_python\HELLO_PYTHON\day06\main08.py
+day09.__init__|C:\workspace_python\HELLO_PYTHON\day09|^
+day09.ora_delete|C:\workspace_python\HELLO_PYTHON\day09\ora_delete.py
+day09.ora_insert|C:\workspace_python\HELLO_PYTHON\day09\ora_insert.py
+day09.ora_select|C:\workspace_python\HELLO_PYTHON\day09\ora_select.py
+day09.ora_update|C:\workspace_python\HELLO_PYTHON\day09\ora_update.py
+day10.myflask01|C:\workspace_python\HELLO_PYTHON\day10\myflask01.py
+day11.dao_emp|C:\workspace_python\HELLO_PYTHON\day11\dao_emp.py
+day11.myflask|C:\workspace_python\HELLO_PYTHON\day11\myflask.py

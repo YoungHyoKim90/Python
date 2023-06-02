@@ -1,6 +1,0 @@
-arr=range(3)
-
-print(arr)
-
-for i in arr :
-    print(arr)

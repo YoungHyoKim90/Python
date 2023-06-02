@@ -1,7 +1,0 @@
-def showDan(dan):
-    
-    print("{}*{}={}".format(dan,1,1*dan))
-    print("{}*{}={}".format(dan,2,2*dan))
-
-    
-showDan(6)

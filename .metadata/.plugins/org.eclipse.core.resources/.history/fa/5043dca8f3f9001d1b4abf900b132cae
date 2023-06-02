@@ -1,8 +1,0 @@
-def add(a,b):
-    return a+break
-
-sum = add(4,2)
-min = minus(4,2)
-
-print("sum" , sum)
-print("min", min)

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+function fn_mod(){
+	location.href = "emp_mod?id={{emp.e_id}}";
+}
+
+</script>
+</head>
+<body>
+EMP_update <br/>
+
+<table border="1px">
+
+	<tr>
+		<td>사번</td>
+		<input type="text" value=""/>
+	</tr>
+	
+	<tr>
+		<td>이름</td>
+		<input type="text" value=""/>
+	</tr>
+	
+	<tr>
+		<td>성별</td>
+		<input type="text" value=""/>
+	</tr>
+	
+	<tr>
+		<td>주소</td>
+		<input type="text" value=""/>
+	</tr>
+
+	<tr>
+		<td colspan = "2">
+			<input type="button" value="수정" onclick="fn_mod()"/>
+			<input type="button" value="삭제"/>
+		</td>
+	</tr>
+
+
+</table>
+
+
+{{emp.e_id}}
+
+
+
+
+
+</body>
+</html>

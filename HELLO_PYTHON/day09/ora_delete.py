@@ -13,8 +13,6 @@ sql = f"DELETE FROM emp WHERE e_id = '{e_id}'"
 # DELETE 문 실행
 cs.execute(sql)
 
-print("DELETE 성공!")
-
 # 변경사항 커밋
 conn.commit()
 

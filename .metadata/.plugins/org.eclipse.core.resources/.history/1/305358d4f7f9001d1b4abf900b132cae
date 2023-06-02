@@ -1,9 +1,0 @@
-
-def getHollJjak():
-    if com %2 == 0:
-        print("짝")
-    else :
-        print("홀")
-
-com = getHollJjak()
-print("com",com)
