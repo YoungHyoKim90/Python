@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js02</title>
+<style type="text/css">
+#it_a, #it_b, #it_c, #it_d {
+  width: 20px;
+}
+</style>
+
+<script type="text/javascript">
+
+
+function sum() {
+  var inputA = parseInt(document.getElementById("it_a").value);
+//   var obj_a = document.querySelecor("#it_a");
+  var inputB = parseInt(document.getElementById("it_b").value);
+  var inputC = parseInt(document.getElementById("it_c").value);
+
+  if (!isNaN(inputA) && !isNaN(inputB) && !isNaN(inputC)) {
+    var result = 0;
+    for (var i = inputA; i <= inputB; i++) {
+      result += i;
+    }
+    result *= inputC;
+    document.getElementById("it_d").value = result;
+  }
+}
+</script>
+
+</head>
+<body>
+
+<input type="text" id="it_a">
+<input type="text" id="it_b">까지
+<input type="text" id="it_c">
+<input type="button" value="button" onclick="sum()">
+<input type="text" id="it_d">
+
+</body>
+</html>

@@ -54,6 +54,11 @@ day09.ora_delete|C:\workspace_python\HELLO_PYTHON\day09\ora_delete.py
 day09.ora_insert|C:\workspace_python\HELLO_PYTHON\day09\ora_insert.py
 day09.ora_select|C:\workspace_python\HELLO_PYTHON\day09\ora_select.py
 day09.ora_update|C:\workspace_python\HELLO_PYTHON\day09\ora_update.py
+day10.__init__|C:\workspace_python\HELLO_PYTHON\day10|^
 day10.myflask01|C:\workspace_python\HELLO_PYTHON\day10\myflask01.py
+day11.__init__|C:\workspace_python\HELLO_PYTHON\day11|^
 day11.dao_emp|C:\workspace_python\HELLO_PYTHON\day11\dao_emp.py
 day11.myflask|C:\workspace_python\HELLO_PYTHON\day11\myflask.py
+day12.__init__|C:\workspace_python\HELLO_PYTHON\day12|^
+day12.dao_mem|C:\workspace_python\HELLO_PYTHON\day12\dao_mem.py
+day12.myflask|C:\workspace_python\HELLO_PYTHON\day12\myflask.py

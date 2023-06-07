@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+window.onload = function() {
+    var cnt = "{{cnt}}";
+    if (cnt === "1") {
+      alert("수정 성공");
+      window.location.href = "/mem_list";
+    } else{
+    	alert("수정 실패");
+    	history.go(-1);
+    }
+  };
+
+
+
+
+</script>
+<body>mem_mod_act {{cnt}}
+
+</body>
+</html>

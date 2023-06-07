@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js01</title>
+
+<style type="text/css">
+#it_dan {
+  width: 30px;
+}
+
+#my_td {
+  height: 200px;
+}
+</style>
+
+<script type="text/javascript">
+function myclick() {
+  var inputNumber = parseInt(document.getElementById("it_dan").value);
+  var outputString = "";
+
+  for (var i = 1; i <= 9; i++) {
+    outputString += inputNumber + " x " + i + " = " + (inputNumber * i) + "<br>";
+  }
+
+  document.getElementById("my_td").innerHTML = outputString;
+}
+</script>
+</head>
+<body>
+<table border="1px">
+  <tr>
+    <td>출력단수:</td>
+    <td>
+      <input type="text" id="it_dan">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <input type="button" value="출력하기" onclick="myclick()">
+    </td>
+  </tr>
+  <tr>
+    <td id="my_td" colspan="2"></td>
+  </tr>
+</table>
+</body>
+</html>

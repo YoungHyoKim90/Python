@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js01</title>
+<script type="text/javascript">
+  function ge() {
+	console.log("ge");
+	
+    var obj_div = document.getElementById("my_div");
+    
+    obj_div.innerText = "Good Evening";
+  }
+  
+  var counter = 0;
+  var greetings = ["Good Morning", "Good Evening", "Good Night"];
+
+  function updateGreeting() {
+    var div = document.getElementById("my_div");
+    div.innerHTML = greetings[counter];
+    counter = (counter + 1) % greetings.length;
+  }
+</script>
+</head>
+<body>
+
+<div id="my_div" onclick="GE()">Good Morning</div>
+<input type="button" value="click" onclick="ge()">
+
+<div id="my_div" onclick="GE()">Good Morning</div>
+<input type="button" value="click" onclick="updateGreeting()">
+
+</body>
+
+
+</body>
+</html>

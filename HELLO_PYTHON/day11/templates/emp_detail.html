@@ -3,54 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+</head>
+<style>
+td{
+text-align:center;
+}
+</style>
 <script type="text/javascript">
 function fn_mod(){
-	location.href = "emp_mod?e_id={{emp.e_id}}"
+	location.href="emp_mod?e_id={{emp.e_id}}";
 }
-
+function fn_del_act(){
+	document.frm.submit();
+}
 </script>
-</head>
 <body>
-EMP_DETAIL <br/>
+EMP_DETAIL
 
-<table border="1px">
+<form name = "frm" action="emp_del_act" method="post">
 
-	<tr>
-		<td>사번</td>
-		<td>{{emp.e_id}}</td>
-	</tr>
-	
-	<tr>
-		<td>이름</td>
-		<td>{{emp.e_name}}</td>
-	</tr>
-	
-	<tr>
-		<td>성별</td>
-		<td>{{emp.gen}}</td>
-	</tr>
-	
-	<tr>
-		<td>주소</td>
-		<td>{{emp.addr}}</td>
-	</tr>
+<input type = "hidden" name="e_id" value="{{emp.e_id}}" />
 
-	<tr>
-		<td colspan = "2">
-			<input type="button" value="수정" onclick ="fn_mod()"/>
-			<input type="button" value="삭제"/>
-		</td>
-	</tr>
+</form>
 
+	<table border=1>
+   		<tr>
+	         <th>사번</th>
+	         <td>{{emp.e_id}}</td>
+	    </tr>
+	    </tr>
+	         <th>이름</th>
+	         <td>{{emp.e_name}}</td>
+	    </tr>
+	    <tr>
+	         <th>성별</th>
+	         <td>{{emp.gen}}</td>
+	    </tr>
+	    <tr>
+	         <th>주소</th>
+	         <td>{{emp.addr}}</td>
+     	</tr>
+     	<tr>
+     		<td><input type="button" value="수정" onclick="fn_mod()"></td>
 
-</table>
-
-
-{{emp.e_id}}
-
-
-
-
-
+     		<td><input type="button" value="삭제" onclick="fn_del_act()"></td>
+     	</tr>
+	</table>
 </body>
 </html>

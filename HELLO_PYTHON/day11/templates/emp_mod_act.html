@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+</head>
 <script type="text/javascript">
-	let count = "{{cnt}}"
-	if (count == "1"){
-		alert("정상 수정되었습니다.")
-		location.href = "emp_list"
-	}else {
-		alert("수정에 실패하였습니다.")
-		history.go(-1)
-	}
+window.onload = function() {
+    var cnt = "{{cnt}}";
+    if (cnt === "1") {
+      alert("수정 성공");
+      window.location.href = "/emp_list";
+    } else{
+    	alert("수정 실패");
+    	history.go(-1);
+    }
+  };
+
+
+
 
 </script>
-
-</head>
-<body>
-emp_mod_act
-
-
+<body>emp_mod_act {{cnt}}
 
 </body>
 </html>

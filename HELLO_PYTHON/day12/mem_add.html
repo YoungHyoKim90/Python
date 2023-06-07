@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+td{
+text-align:center;
+}
+</style>
+<script type="text/javascript">
+function fn_add(){
+	document.frm.submit();
+}
+</script>
+<body>
+mem_add
+<form name="frm" action="mem_add_act" method="post">
+	<table border=1>
+   		<tr>
+	         <th>사번</th>
+	         <td>자동생성</td>
+	    </tr>
+	    </tr>
+	         <th>이름</th>
+	         <td><input type="text" name="m_nm" value=""/></td>
+	    </tr>
+	    <tr>
+	         <th>번호</th>
+	         <td><input type="text" name="tel" value=""/></td>
+	    </tr>
+	    <tr>
+	         <th>주소</th>
+	         <td><input type="text" name="address" value=""/></td>
+     	</tr>
+     	<tr>
+     		<td><input type="button" value="저장" onclick="fn_add()"></td>
+     	</tr>
+	</table>
+</form>
+</body>
+</html>

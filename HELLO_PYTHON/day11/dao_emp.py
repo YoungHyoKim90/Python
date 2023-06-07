@@ -44,11 +44,11 @@ class DaoEmp:
     def insert (self, e_id, e_name, gen, addr):
         ret = []
         sql = f"""
-            select 
-                e_id,e_name,gen,addr  
-            from
-                emp
-            where e_id = '{e_id}'
+            insert into emp
+                (e_id,e_name,gen,addr)  
+            values
+                ('{e_id}','{e_name}','{gen}','{addr}')
+            
         """
         self.cs.execute(sql)
         self.conn.commit()
@@ -78,7 +78,10 @@ class DaoEmp:
             WHERE 
                 e_id = '{e_id}'
         '''
-
+        self.cs.execute(sql)
+        self.conn.commit()
+        return self.cs.rowcount
+    
         
 if __name__ == '__main__':
     de = DaoEmp()

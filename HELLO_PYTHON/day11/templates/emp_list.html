@@ -5,25 +5,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-EMP_LIST
-
-<table border ="1">
-	<tr>
-		<td>사번</td>
-		<td>이름</td>
-		<td>성별</td>
-		<td>주소</td>
-	</tr>
-{% for e in list %}
-
-	<tr>
-		<td><a href = "emp_detail?e_id={{e.e_id}}">{{e.e_id}}</a></td>
-		<td>{{e.e_name}}</td>
-		<td>{{e.gen}}</td>
-		<td>{{e.addr}}</td>
-	</tr>
-{% endfor %}
-</table>
+mem_LIST
+	<table border=1>
+   		<tr>
+	         <th>사번</th>
+	         <th>이름</th>
+	         <th>성별</th>
+	         <th>주소</th>
+     	</tr>
+      {% for e in list %}
+	      <tr>
+	         <td><a href="mem_detail?m_id={{m.m_id}}">{{m.m_id}}</a></td>
+	         <td>{{m.m_nm}}</td>
+	         <td>{{m.tel}}</td>
+	         <td>{{m.address}}</td>
+	      </tr>
+      {% endfor %}
+	</table>
+<a href="mem_add">추가</a>
 
 </body>
 </html>

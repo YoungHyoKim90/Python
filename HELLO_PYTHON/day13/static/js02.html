@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js02</title>
+<script type="text/javascript">
+function myclick() {
+	//
+	//console.log("myclick")
+	//document.getElementsByClassName("it")[0];
+	//console.log("obj_it.value")
+	//var a = obj_it.value;
+	//var aa = parseInt(a);
+	//console.log(a,aa)
+	//
+	//aa++;
+	//console.log(a,aa)
+	//obj_it.value = aa;
+	//
+	
+  var input = document.querySelector(".it");
+  var value = parseInt(input.value);
+  if (!isNaN(value)) {
+    input.value = value + 1;
+  }
+}
+
+function myclick2() {
+	  var input = document.querySelector(".it");
+	  var value = parseInt(input.value);
+	  if (!isNaN(value)) {
+	    input.value = value - 1;
+	  }
+	}
+	
+function myclick3() {
+	  var input = document.querySelector(".it");
+	  var value = parseInt(input.value);
+	  if (!isNaN(value)) {
+	    input.value = value + 2;
+	  }
+	}
+	
+function myclick4() {
+	  var input = document.querySelector(".it");
+	  var value = parseInt(input.value);
+	  if (!isNaN(value)) {
+	    input.value = value - 2;
+	  }
+	}
+
+</script>
+</head>
+<body>
+
+<input type="text" class="it" value="1" />
+<input type="button" value="PLUS" onclick="myclick()">
+<input type="button" value="MINUS" onclick="myclick2()">
+<input type="button" value="2PLUS" onclick="myclick3()">
+<input type="button" value="2MINUS" onclick="myclick4()">
+
+</body>
+</html>

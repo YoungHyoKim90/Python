@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+function fn_mod(){
+	location.href = "mem_mod?id={{mem.m_id}}";
+}
+
+</script>
+</head>
+<body>
+mem_update <br/>
+
+<table border="1px">
+
+	<tr>
+		<td>사번</td>
+		<input type="text" value="" name="m_id"/>
+	</tr>
+	
+	<tr>
+		<td>이름</td>
+		<input type="text" value="" name="m_nm"/>
+	</tr>
+	
+	<tr>
+		<td>번호</td>
+		<input type="text" value="" name="tel"/>
+	</tr>
+	
+	<tr>
+		<td>주소</td>
+		<input type="text" value="" name="address"/>
+	</tr>
+
+	<tr>
+		<td colspan = "2">
+			<input type="button" value="수정" onclick="fn_mod()"/>
+			<input type="button" value="삭제"/>
+		</td>
+	</tr>
+
+
+</table>
+
+
+{{emp.m_id}}
+
+
+
+
+
+</body>
+</html>
