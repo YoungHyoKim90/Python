@@ -13929,3 +13929,6 @@ Java Model Exception: Error in Java Model (code 969): HELLO_PYTHON does not exis
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1440)
 !SUBENTRY 1 org.eclipse.jdt.core 4 969 2023-06-07 15:33:25.742
 !MESSAGE HELLO_PYTHON does not exist
+
+!ENTRY org.eclipse.ui 2 2 2023-06-07 16:14:47.910
+!MESSAGE Invalid preference category path: egovframework.dev.imp.confmngt.preferences.emptyconfpreperencepage (bundle: egovframework.rte.rdt, page: egovframework.rte.rdt.plugin.preferences.RdtPreferencePage)
