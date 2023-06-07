@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js05</title>
+
+<style type="text/css">
+.my_span {
+  display: block;
+  text-align: center;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+</style>
+
+<script type="text/javascript">
+
+function myclick(){
+	
+	var objs = document.querySelectorAll(".my_span2");
+	console.log(objs);	
+	var arr45 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45];
+	
+	for (var i=0; i<1000; i++){
+		var rnd = parseInt(Math.random()*45);
+		var a= arr45[0];
+		arr45[0]=arr45[rnd];
+		arr45[rnd]=a;
+	}
+	console.log("arr45", arr45);
+	
+	  var spanElements = document.getElementsByClassName("my_span");
+	  for (var i = 0; i < spanElements.length; i++) {
+	    spanElements[i].textContent = numbers[i];
+	  }
+	  
+	 objs[0].innerHTML = arr45[0];
+	 objs[1].innerHTML = arr45[1];
+	 objs[2].innerHTML = arr45[2];
+	 objs[3].innerHTML = arr45[3];
+	 objs[4].innerHTML = arr45[4];
+	 objs[5].innerHTML = arr45[5];
+	 
+	 console.log("arr45",arr45);
+	  
+}
+
+</script>
+</head>
+<body>
+  <table border="1px">
+    <tr>
+      <td><span class="my_span">____</span></td>
+      <td><span class="my_span">____</span></td>
+      <td><span class="my_span">____</span></td>
+      <td><span class="my_span">____</span></td>
+      <td><span class="my_span">____</span></td>
+      <td><span class="my_span">____</span></td>
+    </tr>
+    
+    <tr>
+      <td colspan="6">
+        <input type="button" value="로또생성하기" onclick="myclick()">
+      </td>
+    </tr>  
+  </table>
+  
+    <table border="1px">
+    <tr>
+      <td><span class="my_span2">____</span></td>
+      <td><span class="my_span2">____</span></td>
+      <td><span class="my_span2">____</span></td>
+      <td><span class="my_span2">____</span></td>
+      <td><span class="my_span2">____</span></td>
+      <td><span class="my_span2">____</span></td>
+    </tr>
+    
+    <tr>
+      <td colspan="6">
+        <input type="button" value="로또생성하기" onclick="myclicks()">
+      </td>
+    </tr>  
+  </table>
+  
+</body>
+</html>

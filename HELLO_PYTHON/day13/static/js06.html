@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+function myclick(){
+   var choices = ["가위", "바위", "보"];
+   var randomIndex = Math.floor(Math.random() * choices.length);
+   var comChoice = choices[randomIndex];
+   
+   var myChoice = document.getElementById("it_mine").value.trim();
+   
+   if (myChoice === "") {
+      window.alert("가위바위보 중에서 하나를 입력하세요.");
+      return;
+   }
+   
+   var result = "";
+   
+   if (myChoice === comChoice) {
+      result = "비김";
+   } else if (
+      (myChoice === "가위" && comChoice === "보") ||
+      (myChoice === "바위" && comChoice === "가위") ||
+      (myChoice === "보" && comChoice === "바위")
+   ) {
+      result = "나의승리!";
+   } else {
+      result = "컴퓨터의 승리!";
+   }
+   
+   document.getElementById("it_com").value = comChoice;
+   document.getElementById("it_result").value = result;
+}
+</script>
+</head>
+<body>
+<table border="1px">
+   <tr>
+      <td>나 :</td>
+      <td>
+         <input type="text" id="it_mine" />
+      </td>
+   </tr>
+   <tr>
+      <td>컴 :</td>
+      <td>
+         <input type="text" id="it_com" />
+      </td>
+   </tr>
+   <tr>
+      <td>결과 :</td>
+      <td>
+         <input type="text" id="it_result" />
+      </td>
+   <tr>
+      <td colspan="2">
+         <input type="button" value="게임하기." onclick="myclick()">
+      </td>
+   </tr>
+   </tr>
+</table>
+</body>
+</html>

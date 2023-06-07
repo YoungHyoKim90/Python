@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>별그리기</title>
+
+<style type="text/css">
+#it_first, #it_last {
+   width: 40px;
+}
+</style>
+
+<script>
+function myclick() {
+   var firstNumber = parseInt(document.getElementById("it_first").value);
+   var lastNumber = parseInt(document.getElementById("it_last").value);
+   var result = "";
+   
+   if (isNaN(firstNumber) || isNaN(lastNumber)) {
+      alert("첫별, 끝별의 숫자를 넣어주세요.");
+      return;
+   }
+   
+   if (firstNumber > lastNumber) {
+      alert("끝별의 숫자는 첫별의 숫자보다 커야합니다.");
+      return;
+   }
+   
+   for (var i = firstNumber; i <= lastNumber; i++) {
+      result += "*".repeat(i) + "\n";
+   }
+   
+   document.getElementById("ta").value = result;
+}
+</script>
+</head>
+<body>
+<table border="1px">
+   <tr>
+      <td>첫별수</td>
+      <td><input type="text" id="it_first" /></td>
+   </tr>
+   <tr>
+      <td>끝별수</td>
+      <td><input type="text" id="it_last" /></td>
+   </tr>
+   <tr>
+      <td colspan="2"><input type="button" value="별 출력하기" onclick="myclick()" /></td>
+   </tr>
+   <tr>
+      <td colspan="2"><textarea id="ta" rows="10" cols="13"></textarea></td>
+   </tr>
+</table>
+</body>
+</html>

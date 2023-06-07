@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>전화기</title>
+<style type="text/css">
+#it_tel{
+   width: 100px;
+}
+td{
+   text-align: center;
+}
+</style>
+<script>
+function myclick(){
+   var phoneNumber = document.getElementById("it_tel").value;
+   
+   if (phoneNumber.trim() === "") {
+      alert("전화번호를 입력해 주세요..");
+      return;
+   }
+   
+   alert("전화중입니다. " + phoneNumber);
+}
+
+function appendNumber(number) {
+   var telField = document.getElementById("it_tel");
+   telField.value += number;
+}
+</script>
+</head>
+<body>
+<table border="1px">
+   <tr>
+      <td colspan="3">
+         <input type="text" id="it_tel">
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <input type="button" class="btn" value="1" onclick="appendNumber('1')">
+      </td>
+      <td>
+         <input type="button" class="btn" value="2" onclick="appendNumber('2')">
+      </td>
+      <td>
+         <input type="button" class="btn" value="3" onclick="appendNumber('3')">
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <input type="button" class="btn" value="4" onclick="appendNumber('4')">
+      </td>
+      <td>
+         <input type="button" class="btn" value="5" onclick="appendNumber('5')">
+      </td>
+      <td>
+         <input type="button" class="btn" value="6" onclick="appendNumber('6')">
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <input type="button" class="btn" value="7" onclick="appendNumber('7')">
+      </td>
+      <td>
+         <input type="button" class="btn" value="8" onclick="appendNumber('8')">
+      </td>
+      <td>
+         <input type="button" class="btn" value="9" onclick="appendNumber('9')">
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <input type="button" class="btn" value="0" onclick="appendNumber('0')">
+      </td>
+      <td colspan="2">
+         <input type="button" id="btn" value="call" onclick="myclick()">
+      </td>
+   </tr>
+</table>
+</body>
+</html>
