@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq03</title>
+<script src="code.jquery.com_jquery-3.7.0.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+  function sum() {
+    var inputA = parseInt($("#it_a").val());
+    var inputB = parseInt($("#it_b").val());
+    var inputC = parseInt($("#it_c").val());
+
+    if (!isNaN(inputA) && !isNaN(inputB) && !isNaN(inputC)) {
+      var result = 0;
+      for (var i = inputA; i <= inputB; i++) {
+        result += i;
+      }
+      result *= inputC;
+      $("#it_d").val(result);
+    }
+  }
+
+  $("input[value='button']").click(sum);
+});
+</script>
+</head>
+<body>
+<input type="text" id="it_a">에서
+<input type="text" id="it_b">까지
+<input type="text" id="it_c">배수
+<input type="button" value="배수의 합은:">
+<input type="text" id="it_d">결과
+</body>
+</html>

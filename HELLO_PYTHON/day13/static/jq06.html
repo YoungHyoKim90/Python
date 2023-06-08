@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq06</title>
+<script src="code.jquery.com_jquery-3.7.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  function myclick() {
+    var choices = ["가위", "바위", "보"];
+    var randomIndex = Math.floor(Math.random() * choices.length);
+    var comChoice = choices[randomIndex];
+
+    var myChoice = $("#it_mine").val().trim();
+
+    if (myChoice === "") {
+      window.alert("가위바위보 중에서 하나를 입력하세요.");
+      return;
+    }
+
+    var result = "";
+
+    if (myChoice === comChoice) {
+      result = "비김";
+    } else if (
+      (myChoice === "가위" && comChoice === "보") ||
+      (myChoice === "바위" && comChoice === "가위") ||
+      (myChoice === "보" && comChoice === "바위")
+    ) {
+      result = "나의승리!";
+    } else {
+      result = "컴퓨터의 승리!";
+    }
+
+    $("#it_com").val(comChoice);
+    $("#it_result").val(result);
+  }
+
+  $("input[value='Play game.']").click(myclick);
+});
+</script>
+</head>
+<body>
+<table border="1px">
+   <tr>
+      <td>YOUs:</td>
+      <td>
+         <input type="text" id="it_mine" />
+      </td>
+   </tr>
+   <tr>
+      <td>Com:</td>
+      <td>
+         <input type="text" id="it_com" />
+      </td>
+   </tr>
+   <tr>
+      <td>결과:</td>
+      <td>
+         <input type="text" id="it_result" />
+      </td>
+   <tr>
+      <td colspan="2">
+         <input type="button" value="Play game.">
+      </td>
+   </tr>
+   </tr>
+</table>
+</body>
+</html>

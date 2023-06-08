@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq01</title>
+<script src="code.jquery.com_jquery-3.7.0.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+  function ge() {
+    console.log("ge");
+    var obj_div = $("#my_div");
+    obj_div.text("Good Evening");
+  }
+  
+  var counter = 0;
+  var greetings = ["Good Morning", "Good Evening", "Good Night"];
+
+  function updateGreeting() {
+    var div = $("#my_div");
+    div.html(greetings[counter]);
+    counter = (counter + 1) % greetings.length;
+  }
+
+  $("#my_div").click(ge);
+  $("input[value='click']").click(updateGreeting);
+});
+
+
+
+// $(document).ready(function(){
+// 	 실행할 기능을 정의해주세요.
+// 	});
+//$("#btn").bind("click", function() {});
+
+// $(document).ready(function(){
+// 	$("#btn").bind("click", function() {
+// 		myclick();
+// 	});
+// }
+
+</script>
+</head>
+<body>
+
+<div id="my_div">Good Morning</div>
+<input type="button" value="click">
+
+</body>
+</html>

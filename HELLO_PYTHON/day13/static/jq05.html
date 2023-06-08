@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq05</title>
+<script src="code.jquery.com_jquery-3.7.0.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+  function myclick() {
+    var numbers = [];
+
+    for (var i = 1; i <= 45; i++) {
+      numbers.push(i);
+    }
+
+    for (var i = numbers.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = numbers[i];
+      numbers[i] = numbers[j];
+      numbers[j] = temp;
+    }
+
+    $(".my_span").each(function(index) {
+      $(this).text(numbers[index]);
+    });
+  }
+
+  $("input[value='로또생성하기']").click(myclick);
+});
+</script>
+</head>
+<body>
+  <table border="1px">
+    <tr>
+      <td><span class="my_span">____</span></td>
+      <td><span class="my_span">____</span></td>
+      <td><span class="my_span">____</span></td>
+      <td><span class="my_span">____</span></td>
+      <td><span class="my_span">____</span></td>
+      <td><span class="my_span">____</span></td>
+    </tr>
+    
+    <tr>
+      <td colspan="6">
+        <input type="button" value="로또생성하기">
+      </td>
+    </tr>  
+  </table>
+</body>
+</html>

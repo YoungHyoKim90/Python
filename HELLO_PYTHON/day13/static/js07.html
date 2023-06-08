@@ -20,7 +20,33 @@ function myclick(){
       return;
    }
    
-   alert("전화중입니다. " + phoneNumber);
+   alert(phoneNumber +"번호로 전화를 거는중입니다. ");
+   alert(phoneNumber +"가 전화를 받지 않습니다. ");
+   alert(phoneNumber +"가 맞는지 확인하시고 다시 걸어주시기 바랍니다. ");
+   alert("해당 알림참은 앞으로 100번 더 나옵니다.");
+   alert("해당 알림참은 앞으로 99번 더 나옵니다.");
+   alert("해당 알림참은 앞으로 98번 더 나옵니다.");
+   alert("해당 알림참은 앞으로 97번 더 나옵니다.");
+   alert("해당 알림참은 앞으로 96번 더 나옵니다.");
+   alert("해당 알림참은 앞으로 95번 더 나옵니다.");
+   alert("해당 알림참은 앞으로 94번 더 나옵니다.");
+   alert("해당 알림참은 앞으로 93번 더 나옵니다.");
+   alert("해당 알림참은 앞으로 92번 더 나옵니다.");
+   alert("해당 알림참은 앞으로 91번 더 나옵니다.");
+   alert("해당 알림참은 앞으로 90번 더 나옵니다.");
+   alert("귀찮아서 나머지는 생략합니다.");
+   alert("힝 속았지!?");
+   
+   for(var a =89; a > 0 ; a--){
+	   alert("해당 알림참은 앞으로" + a + "번 더 나옵니다.");
+   }
+   
+   alert("안나가고 잘하시는 군요. 다시 해볼까요?");
+   alert("해당 알림참은 앞으로 10000번 더 나옵니다.");
+   
+   for(var a =10000; a > 0 ; a--){
+	   alert("해당 알림참은 앞으로" + a + "번 더 나옵니다.");
+   }
 }
 
 function appendNumber(number) {
@@ -39,6 +65,7 @@ function appendNumber(number) {
    <tr>
       <td>
          <input type="button" class="btn" value="1" onclick="appendNumber('1')">
+<!--          <input type="button" class="btn" value="1" onclick="appendNumber('this')"> -->
       </td>
       <td>
          <input type="button" class="btn" value="2" onclick="appendNumber('2')">

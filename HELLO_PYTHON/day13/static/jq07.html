@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq08</title>
+<script src="code.jquery.com_jquery-3.7.0.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+  function myclick() {
+    var phoneNumber = $("#it_tel").val().trim();
+
+    if (phoneNumber === "") {
+      alert("Please enter your phone number.");
+      return;
+    }
+
+    alert(phoneNumber + " Calling number.");
+    alert(phoneNumber + " is not receiving calls.");
+    alert(phoneNumber + " Please make sure phoneNumber is correct and call again. ");
+    alert("This alert will appear 100 more times");
+    alert("This alert will appear 99 more times.");
+    alert("This alert will appear 98 more times.");
+    alert("This alert will appear 97 more times.");
+    alert("This alert will appear 96 more times");
+    alert("This alert will appear 95 more times");
+    alert("This alert will appear 94 more times.");
+    alert("This alert will appear 93 more times.");
+    alert("This alert will appear 92 more times");
+    alert("This alert will appear 91 more times.");
+    alert("This alert will appear 90 more times");
+    alert("I skipped the rest because it's annoying.");
+    alert("Are you fooled!?");
+
+    for (var a = 89; a > 0; a--) {
+      alert("This notification will appear " + a + " more times");
+    }
+
+    alert("You didn't go out and you're doing well. Shall we try again?");
+    alert("This notification will appear 10000 more times.");
+
+    for (var a = 10000; a > 0; a--) {
+      alert("This notification will appear " + a + " more times");
+    }
+  }
+
+  function appendNumber(number) {
+    var telField = $("#it_tel");
+    telField.val(telField.val() + number);
+  }
+
+  $(".btn").click(function() {
+    var number = $(this).val();
+    appendNumber(number);
+  });
+
+  $("#btn").click(myclick);
+});
+</script>
+</head>
+<body>
+<table border="1px">
+   <tr>
+      <td colspan="3">
+         <input type="text" id="it_tel">
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <input type="button" class="btn" value="1">
+      </td>
+      <td>
+         <input type="button" class="btn" value="2">
+      </td>
+      <td>
+         <input type="button" class="btn" value="3">
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <input type="button" class="btn" value="4">
+      </td>
+      <td>
+         <input type="button" class="btn" value="5">
+      </td>
+      <td>
+         <input type="button" class="btn" value="6">
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <input type="button" class="btn" value="7">
+      </td>
+      <td>
+         <input type="button" class="btn" value="8">
+      </td>
+      <td>
+         <input type="button" class="btn" value="9">
+      </td>
+   </tr>
+
+      <td>
+         <input type="button" class="btn" value="0" onclick="appendNumber('0')">
+      </td>
+      <td colspan="2">
+         <input type="button" id="btn" value="call" onclick="myclick()">
+      </td>
+   </tr>
+</table>
+</body>
+</html>
+
+
+

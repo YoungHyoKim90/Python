@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="me"/>
+		<item key="selection" value="보"/>
 		<list key="findhistory">
+			<item value="bo"/>
+			<item value="rock"/>
+			<item value="scissors"/>
 			<item value="me"/>
 			<item value="//127.0.0.1:5000/"/>
 			<item value="emp_"/>
@@ -20,14 +23,14 @@
 			<item value="emp=emp"/>
 			<item value="addr"/>
 			<item value="gen"/>
-			<item value="e_name"/>
-			<item value="daoEmp"/>
-			<item value="dao_emp"/>
 		</list>
 		<list key="replacehistory">
+			<item value="보"/>
+			<item value="바위"/>
+			<item value="가위"/>
+			<item value=""/>
 			<item value="mem_"/>
 			<item value="m_"/>
-			<item value=""/>
 			<item value="mem"/>
 			<item value="daoMem"/>
 			<item value="dao_mem"/>
@@ -39,7 +42,7 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1230"/>
+		<item key="DIALOG_X_ORIGIN" value="908"/>
 		<item key="DIALOG_Y_ORIGIN" value="317"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>

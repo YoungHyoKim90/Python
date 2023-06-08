@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq04</title>
+<script src="code.jquery.com_jquery-3.7.0.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+  function myclick() {
+    var inputNumber = parseInt($("#it_dan").val());
+    var outputString = "";
+ㄴ
+    for (var i = 1; i <= 9; i++) {
+      outputString += inputNumber + " x " + i + " = " + (inputNumber * i) + "<br>";
+    }
+
+    $("#my_td").html(outputString);
+  }
+
+  $("input[value='출력하기']").click(myclick);
+});ㄴ
+</script>
+</head>
+<body>
+<table border="1px">
+  <tr>
+    <td>출력단수:</td>
+    <td>
+      <input type="text" id="it_dan">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <input type="button" value="출력하기">
+    </td>
+  </tr>
+  <tr>
+    <td id="my_td" colspan="2"></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq02</title>
+<script src="code.jquery.com_jquery-3.7.0.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		// console.log("myclick");
+		// var obj_it = $(".it").eq(0);
+		// console.log("obj_it.value");
+		// var a = obj_it.val();
+		// var aa = parseInt(a);
+		// console.log(a, aa);
+		// aa++;
+		// console.log(a, aa);
+		// obj_it.val(aa);
+
+		function myclick() {
+			var input = $(".it");
+			var value = parseInt(input.val());
+			if (!isNaN(value)) {
+				input.val(value + 1);
+			}
+		}
+
+		function myclick2() {
+			var input = $(".it");
+			var value = parseInt(input.val());
+			if (!isNaN(value)) {
+				input.val(value - 1);
+			}
+		}
+
+		function myclick3() {
+			var input = $(".it");
+			var value = parseInt(input.val());
+			if (!isNaN(value)) {
+				input.val(value + 2);
+			}
+		}
+
+		function myclick4() {
+			var input = $(".it");
+			var value = parseInt(input.val());
+			if (!isNaN(value)) {
+				input.val(value - 2);
+			}
+
+		}
+		function myclick5() {
+			var input = $(".it");
+			var value = parseInt(input.val());
+			if (!isNaN(value)) {
+				input.val(value * 2);
+			}
+
+		}
+
+		$("input[value='+PLUS']").click(myclick);
+		$("input[value='-MINUS']").click(myclick2);
+		$("input[value='+2PLUS']").click(myclick3);
+		$("input[value='-2MINUS']").click(myclick4);
+		$("input[value='x2MULTIPLY']").click(myclick5);
+	});
+</script>
+</head>
+<body>
+	<input type="text" class="it" value="1" />
+	<input type="button" value="+PLUS">
+	<input type="button" value="-MINUS">
+	<input type="button" value="+2PLUS">
+	<input type="button" value="-2MINUS">
+	<input type="button" value="x2MULTIPLY">
+</body>
+</html>

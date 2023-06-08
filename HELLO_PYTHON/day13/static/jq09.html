@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq06</title>
+<script src="code.jquery.com_jquery-3.7.0.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+  // Generate a random number between 1 and 100
+  var targetNumber = Math.floor(Math.random() * 100) + 1;
+  var attempts = 0;
+
+  function guessNumber() {
+    var input = $('#it').val();
+    var result = $('#my_td');
+
+    if (input === '') {
+      result.text('Please enter a number.');
+      return;
+    }
+
+    var guess = parseInt(input);
+
+    if (isNaN(guess)) {
+      result.text('Please enter a number.');
+      return;
+    }
+
+    attempts++;
+
+    if (guess === targetNumber) {
+      result.text('Success. You succeeded in ' + attempts + ' times. Congratulations.');
+    } else if (attempts === 10) {
+      result.text('You have exhausted all 10 opportunities. Failed. \n The correct answer is ' + targetNumber + '..');
+    } else {
+      var hint = guess > targetNumber ? 'down!' : 'up!';
+      result.text('Wrong. ' + hint + '. Please try again.');
+    }
+  }
+
+  $('input[type="button"]').click(guessNumber);
+});
+</script>
+</head>
+<body>
+  <table border="1px">
+    <tr>
+      <td>Up Down Game!</td>
+      <td>
+        <input type="text" id="it">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="button" value="Guess it.">
+      </td>
+    </tr>
+
+    <tr>
+      <td id="my_td" colspan="2"></td>
+    </tr>
+  </table>
+</body>
+</html>
