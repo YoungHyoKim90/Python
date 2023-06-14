@@ -1,0 +1,636 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OMOK</title>
+<script type="text/javascript" src="jquery-3.6.0.js" ></script>
+<script type="text/javascript">
+var comput_i = 0;
+var computs = [
+        {"i":0,"j":0},
+        {"i":0,"j":1},
+        {"i":0,"j":2},
+        {"i":0,"j":3},
+        {"i":0,"j":4}
+    ];
+
+var flag_wb = true;
+var flag_over = false;
+var arr2d = [
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0],
+	[0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0]
+	
+];
+
+function myinit(){
+	var stns = document.getElementsByClassName("stn");
+	
+	for(var i=0;i<20;i++){
+		for(var j=0;j<20;j++){
+			stns[i*20+j].alt = i+","+j;
+
+		}
+	}
+}
+
+function myrender(){
+	var stns = document.getElementsByClassName("stn");
+	for(var i=0;i<20;i++){
+		for(var j=0;j<20;j++){
+			if(arr2d[i][j] == 0){
+				stns[i*20+j].src = "0.png"
+			}
+			if(arr2d[i][j] == 1){
+				stns[i*20+j].src = "1.png"
+			}
+			if(arr2d[i][j] == 2){
+				stns[i*20+j].src = "2.png"
+			}
+			
+		}
+	}
+	
+}
+
+function myreset(){
+	flag_wb = true;
+	flag_over = false;
+	comput_i = 0;
+	for(var i=0;i<20;i++){
+		for(var j=0;j<20;j++){
+			arr2d[i][j]=0;
+		}
+		
+	}
+	myrender();
+
+}
+
+function myclick(obj){
+	if(flag_over){
+		return;
+	}
+	
+	var str = obj.alt;
+	var arr = str.split(",");
+	var i = parseInt(arr[0]);
+	var j = parseInt(arr[1]);
+	
+	if(arr2d[i][j]>0){
+		return;
+	}
+	
+	var stone = -1;
+	if(flag_wb){
+		arr2d[i][j] = 1;
+		stone = 1;
+	}else{
+		arr2d[i][j] = 2;
+		stone = 2;
+	}
+	
+	var up = checkUP(i,j,stone);
+	var dw = checkDW(i,j,stone);
+	var ri = checkRI(i,j,stone);
+	var le = checkLE(i,j,stone);
+
+	var ur = checkUR(i,j,stone);
+	var ul = checkUL(i,j,stone);
+	var dr = checkDR(i,j,stone);
+	var dl = checkDL(i,j,stone);
+	
+	var d1 = up + dw + 1;
+	var d2 = ri + le + 1;
+	var d3 = ur + dl + 1;
+	var d4 = ul + dr + 1;
+	
+	myrender();
+	if(d1 == 5 || d2 == 5 || d3 == 5 || d4 == 5){
+		if(flag_wb){
+			setTimeout("alert('백돌승리.')", 1);
+		}else{
+			setTimeout("alert('흑돌승리.')", 1);
+		}
+		flag_over = true;
+		return;
+	}
+
+
+	
+	flag_wb = !flag_wb;
+	
+	//-----------------------------------------------------------------------------------
+	
+	
+	
+	var ai = -1;
+	var aj = -1;
+	
+	var stones	= arr2d + "";
+	var stones = stones.replace(/2/gi, "-1")
+	console.log(stones);
+	
+	var postdata = {
+		'stones':stones
+	}
+
+	$.ajax({
+		url : "ajax_omok",
+		data : JSON.stringify(postdata),
+		dataType : "json",
+		type : "post",
+		contentType: "application/json",
+		async: false,
+		statusCode : {
+			404 : function() {
+				alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+			}
+		},
+		success : function(data) {
+			ai = data.i;
+			aj = data.j;
+			console.log(data.i);
+			console.log(data.j);
+		}
+	});
+	
+	var stone = -1;
+	if(flag_wb){
+		arr2d[ai][aj] = 1;
+		stone = 1;
+	}else{
+		arr2d[ai][aj] = 2;
+		stone = 2;
+	}
+	
+	var up = checkUP(ai,aj,stone);
+	var dw = checkDW(ai,aj,stone);
+	var ri = checkRI(ai,aj,stone);
+	var le = checkLE(ai,aj,stone);
+
+	var ur = checkUR(ai,aj,stone);
+	var ul = checkUL(ai,aj,stone);
+	var dr = checkDR(ai,aj,stone);
+	var dl = checkDL(ai,aj,stone);
+	
+	var d1 = up + dw + 1;
+	var d2 = ri + le + 1;
+	var d3 = ur + dl + 1;
+	var d4 = ul + dr + 1;
+	
+	myrender();
+	if(d1 == 5 || d2 == 5 || d3 == 5 || d4 == 5){
+		if(flag_wb){
+			setTimeout("alert('백돌승리.')", 1);
+		}else{
+			setTimeout("alert('흑돌승리.')", 1);
+		}
+		flag_over = true;
+	}
+
+
+	
+	flag_wb = !flag_wb;
+}
+function checkDL(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i++;
+			j--;
+			if(arr2d[i][j]==stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}
+	} catch(e){
+		return cnt;
+	}
+}
+function checkDR(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i++;
+			j++;
+			if(arr2d[i][j]==stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}
+	} catch(e){
+		return cnt;
+	}
+}
+
+function checkUL(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i--;
+			j--;
+			if(arr2d[i][j]==stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}
+	} catch(e){
+		return cnt;
+	}
+}
+function checkUR(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i--;
+			j++;
+			if(arr2d[i][j]==stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}
+	} catch(e){
+		return cnt;
+	}
+}
+
+function checkLE(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			j--;
+			if(arr2d[i][j]==stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}
+	} catch(e){
+		return cnt;
+	}
+}
+function checkRI(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			j++;
+			if(arr2d[i][j]==stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}
+	} catch(e){
+		return cnt;
+	}
+}
+function checkDW(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i++;
+			if(arr2d[i][j]==stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}
+	} catch(e){
+		return cnt;
+	}
+}
+
+function checkUP(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i--;
+			if(arr2d[i][j]==stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}
+	} catch(e){
+		return cnt;
+	}
+}
+
+
+</script>
+<style type="text/css">
+table{
+	border-spacing: 0px;
+}
+tr,td{
+	padding: 0px;
+}
+img {
+	display: block;
+}
+</style>
+</head>
+<body onload="myinit()">
+<input type="button" onclick="myreset()" value="리셋" />
+<table>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	
+
+	
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	
+	
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	<tr>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+		<td><img class="stn" src="0.png" onclick="myclick(this)" /></td><td><img class="stn" src="0.png" onclick="myclick(this)" /></td>
+	</tr>
+	
+
+
+	
+</table>
+</body>
+</html>

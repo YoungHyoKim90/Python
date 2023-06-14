@@ -16,26 +16,26 @@ $(document).ready(function() {
     var result = $('#my_td');
 
     if (input === '') {
-      result.text('Please enter a number.');
+      result.text('숫자를 입력해 주세요.');
       return;
     }
 
     var guess = parseInt(input);
 
     if (isNaN(guess)) {
-      result.text('Please enter a number.');
+      result.text('숫자를 입력해 주세요.');
       return;
     }
 
     attempts++;
 
     if (guess === targetNumber) {
-      result.text('Success. You succeeded in ' + attempts + ' times. Congratulations.');
+      result.text('정답입니다. ' + attempts + ' 번 만에 맞추셨습니다.');
     } else if (attempts === 10) {
-      result.text('You have exhausted all 10 opportunities. Failed. \n The correct answer is ' + targetNumber + '..');
+      result.text('10번의 기회를 모두 사용하셨습니다. \n 정답은 ' + targetNumber + '입니다.');
     } else {
       var hint = guess > targetNumber ? 'down!' : 'up!';
-      result.text('Wrong. ' + hint + '. Please try again.');
+      result.text('틀렸습니다. ' + hint + '. 다시 숫자를 입력해 주세요.');
     }
   }
 
@@ -46,14 +46,14 @@ $(document).ready(function() {
 <body>
   <table border="1px">
     <tr>
-      <td>Up Down Game!</td>
+      <td>Up Down 게임!</td>
       <td>
         <input type="text" id="it">
       </td>
     </tr>
     <tr>
       <td colspan="2">
-        <input type="button" value="Guess it.">
+        <input type="button" value="숫자입력.">
       </td>
     </tr>
 

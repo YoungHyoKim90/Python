@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+table,tr{
+	border-spacing: 0px;
+}
+td{
+	background-image: url(0.png);
+	width: 40px;
+	height: 40px;
+
+	border-spacing: 0px;
+}
+
+</style>
+<script type="text/javascript">
+var arr2D = [
+	[0,0,0,0,0,	0,0,0,0,0],
+	[0,0,0,0,0,	0,0,0,0,0],
+	[0,0,0,0,0,	0,0,0,0,0],
+	[0,0,0,0,0,	0,0,0,0,0],
+	[0,0,0,0,0,	0,0,0,0,0],
+	
+	[0,0,0,0,0,	0,0,0,0,0],
+	[0,0,0,0,0,	0,0,0,0,0],
+	[0,0,0,0,0,	0,0,0,0,0],
+	[0,0,0,0,0,	0,0,0,0,0],
+	[0,0,0,0,0,	0,0,0,0,0]
+];
+var flag_wb = true;
+var flag_over = false;
+
+function getUp(i,j,stone){
+	var ret = 0;
+	try {
+		while(true){
+			i--;
+			if(arr2D[i][j]==stone){
+				ret++;
+			}else{
+				return ret;
+			}
+		}
+	} catch (err) {
+		return ret;
+	}
+}
+
+function getDW(i,j,stone){
+	var ret = 0;
+	try {
+		while(true){
+			i++;
+			if(arr2D[i][j]==stone){
+				ret++;
+			}else{
+				return ret;
+			}
+		}
+	} catch (err) {
+		return ret;
+	}
+}
+function getRI(i,j,stone){
+	var ret = 0;
+	try {
+		while(true){
+			j++;
+			if(arr2D[i][j]==stone){
+				ret++;
+			}else{
+				return ret;
+			}
+		}
+	} catch (err) {
+		return ret;
+	}
+}
+function getLE(i,j,stone){
+	var ret = 0;
+	try {
+		while(true){
+			j--;
+			if(arr2D[i][j]==stone){
+				ret++;
+			}else{
+				return ret;
+			}
+		}
+	} catch (err) {
+		return ret;
+	}
+}
+
+
+function getUR(i,j,stone){
+	var ret = 0;
+	try {
+		while(true){
+			i--;
+			j++;
+			if(arr2D[i][j]==stone){
+				ret++;
+			}else{
+				return ret;
+			}
+		}
+	} catch (err) {
+		return ret;
+	}
+}
+
+function getUL(i,j,stone){
+	var ret = 0;
+	try {
+		while(true){
+			i--;
+			j--;
+			if(arr2D[i][j]==stone){
+				ret++;
+			}else{
+				return ret;
+			}
+		}
+	} catch (err) {
+		return ret;
+	}
+}
+
+function getDR(i,j,stone){
+	var ret = 0;
+	try {
+		while(true){
+			i++;
+			j++;
+			if(arr2D[i][j]==stone){
+				ret++;
+			}else{
+				return ret;
+			}
+		}
+	} catch (err) {
+		return ret;
+	}
+}
+function getDL(i,j,stone){
+	var ret = 0;
+	try {
+		while(true){
+			i++;
+			j--;
+			if(arr2D[i][j]==stone){
+				ret++;
+			}else{
+				return ret;
+			}
+		}
+	} catch (err) {
+		return ret;
+	}
+}
+
+function myclick(obj){
+	if(flag_over){
+		return;
+	}
+	
+	var str_ij = obj.title;
+	var arr_ij = str_ij.split(",");
+	var i = parseInt(arr_ij[0]);
+	var j = parseInt(arr_ij[1]);
+	
+	if(arr2D[i][j]>0){
+		return;
+	}
+	
+	var stone = -1;
+	if(flag_wb){
+		arr2D[i][j]=1;	
+		stone = 1;
+	}else{
+		arr2D[i][j]=2;
+		stone = 2;
+	}
+	
+	var up = getUp(i,j,stone);
+	var dw = getDW(i,j,stone);
+	var ri = getRI(i,j,stone);
+	var le = getLE(i,j,stone);
+	var ur = getUR(i,j,stone);
+	var ul = getUL(i,j,stone);
+	var dr = getDR(i,j,stone);
+	var dl = getDL(i,j,stone);
+	
+	var d1 = up + dw + 1;
+	var d2 = ur + dl + 1;
+	var d3 = ri + le + 1;
+	var d4 = ul + dr + 1;
+	
+	myrender();
+	if(d1==5||d2==5||d3==5||d4==5){
+		if(flag_wb){
+			setTimeout("alert('백돌승리')", 1);
+		}else{
+			setTimeout("alert('흑돌승리')", 1);
+		}
+		flag_over = true;
+		
+	}
+	
+
+	
+	
+	flag_wb =! flag_wb;
+}
+
+function myrender(){
+	var tds = document.getElementsByTagName("td");
+	
+	for(var i=0;i<10;i++){
+		for(var j=0;j<10;j++){
+			tds[i*10+j].style.backgroundImage="url('"+arr2D[i][j]+".png')";
+		}
+	}
+	
+}
+
+function fn_init(){
+	var tds = document.getElementsByTagName("td");	
+	for(var i=0;i<tds.length;i++){
+		tds[i].onclick = function(event){ 
+			myclick(this);
+		}
+	}
+	
+	for(var i=0;i<10;i++){
+		for(var j=0;j<10;j++){
+			tds[i*10+j].title = i+","+j;
+		}
+	}
+	myrender();
+	
+	
+}
+
+function fn_reset(){
+	for(var i=0;i<10;i++){
+		for(var j=0;j<10;j++){
+			arr2D[i][j]=0;
+		}
+	}
+	myrender();
+	flag_wb = true;
+	flag_over = false;
+}
+
+</script>
+</head>
+<body onload="fn_init()">
+OMOK <a href="javascript:fn_reset()">RESET</a>
+<table>
+	<tr>
+		<td title="0,0"></td><td title="0,1"></td><td title="0,2"></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+	<tr>
+		<td></td><td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+	<tr>
+		<td></td><td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+	<tr>
+		<td></td><td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+	<tr>
+		<td></td><td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+	<tr>
+		<td></td><td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+	<tr>
+		<td></td><td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+	<tr>
+		<td></td><td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+	<tr>
+		<td></td><td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+	<tr>
+		<td></td><td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+</table>
+
+</body>
+</html>
+
+
