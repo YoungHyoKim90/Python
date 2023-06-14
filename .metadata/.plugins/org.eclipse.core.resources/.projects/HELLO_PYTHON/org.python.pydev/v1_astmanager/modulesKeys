@@ -1,4 +1,7 @@
 MODULES_MANAGER_V3
+Test01.__init__|C:\workspace_python\HELLO_PYTHON\Test01
+Test01.myflask01|C:\workspace_python\HELLO_PYTHON\Test01\myflask01.py
+Test01.static.__init__|C:\workspace_python\HELLO_PYTHON\Test01\static|^
 day01.__init__|C:\workspace_python\HELLO_PYTHON\day01|^
 day01.hello|C:\workspace_python\HELLO_PYTHON\day01\hello.py
 day01.myif01|C:\workspace_python\HELLO_PYTHON\day01\myif01.py
@@ -62,4 +65,5 @@ day11.myflask|C:\workspace_python\HELLO_PYTHON\day11\myflask.py
 day12.__init__|C:\workspace_python\HELLO_PYTHON\day12|^
 day12.dao_mem|C:\workspace_python\HELLO_PYTHON\day12\dao_mem.py
 day12.myflask|C:\workspace_python\HELLO_PYTHON\day12\myflask.py
+day13.__init__|C:\workspace_python\HELLO_PYTHON\day13
 day13.myflask01|C:\workspace_python\HELLO_PYTHON\day13\myflask01.py

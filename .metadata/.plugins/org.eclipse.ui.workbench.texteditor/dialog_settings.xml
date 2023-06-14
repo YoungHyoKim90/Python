@@ -6,8 +6,14 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="보"/>
+		<item key="selection" value="init"/>
 		<list key="findhistory">
+			<item value="init"/>
+			<item value="for"/>
+			<item value="ren"/>
+			<item value="60"/>
+			<item value="click"/>
+			<item value="td"/>
 			<item value="bo"/>
 			<item value="rock"/>
 			<item value="scissors"/>
@@ -17,12 +23,6 @@
 			<item value="e_"/>
 			<item value="emp"/>
 			<item value="mod"/>
-			<item value="dao_mem"/>
-			<item value="daomem"/>
-			<item value="daommem"/>
-			<item value="emp=emp"/>
-			<item value="addr"/>
-			<item value="gen"/>
 		</list>
 		<list key="replacehistory">
 			<item value="보"/>
@@ -42,8 +42,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="908"/>
-		<item key="DIALOG_Y_ORIGIN" value="317"/>
+		<item key="DIALOG_X_ORIGIN" value="376"/>
+		<item key="DIALOG_Y_ORIGIN" value="433"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
