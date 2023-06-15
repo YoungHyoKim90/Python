@@ -6,44 +6,45 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="init"/>
+		<item key="selection" value="moon"/>
 		<list key="findhistory">
+			<item value="mesh3"/>
+			<item value="mesh2"/>
+			<item value="mesh1"/>
+			<item value="capsule"/>
+			<item value="mesh"/>
+			<item value="function"/>
+			<item value="reset"/>
+			<item value="ㄱㄷ\\reset"/>
+			<item value="리셋"/>
+			<item value="리셋ㄱ"/>
+			<item value="flag_over"/>
+			<item value="var"/>
+			<item value="up"/>
+			<item value="ri"/>
 			<item value="init"/>
-			<item value="for"/>
-			<item value="ren"/>
-			<item value="60"/>
-			<item value="click"/>
-			<item value="td"/>
-			<item value="bo"/>
-			<item value="rock"/>
-			<item value="scissors"/>
-			<item value="me"/>
-			<item value="//127.0.0.1:5000/"/>
-			<item value="emp_"/>
-			<item value="e_"/>
-			<item value="emp"/>
-			<item value="mod"/>
 		</list>
 		<list key="replacehistory">
+			<item value="moon"/>
+			<item value="earth"/>
+			<item value="sun"/>
+			<item value=""/>
+			<item value="mesh"/>
+			<item value="capsule"/>
 			<item value="보"/>
 			<item value="바위"/>
 			<item value="가위"/>
-			<item value=""/>
 			<item value="mem_"/>
 			<item value="m_"/>
 			<item value="mem"/>
 			<item value="daoMem"/>
 			<item value="dao_mem"/>
 			<item value="mem=mem"/>
-			<item value="address"/>
-			<item value="tel"/>
-			<item value="m_nm"/>
-			<item value="m_id"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="376"/>
-		<item key="DIALOG_Y_ORIGIN" value="433"/>
+		<item key="DIALOG_X_ORIGIN" value="-139"/>
+		<item key="DIALOG_Y_ORIGIN" value="393"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
