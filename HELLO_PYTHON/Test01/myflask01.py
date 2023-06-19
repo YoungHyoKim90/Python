@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return redirect("/static/examples/_ex01.html")
+    return redirect("/static/examples/_ex14.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - geometry - cube</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div style="position: absolute;" ><h1><a id="my_a">RESET</a></h1></div>
+
+		<!-- Import maps polyfill -->
+		<!-- Remove this when import maps will be widely supported -->
+		<script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as THREE from 'three';
+
+			let camera, scene, renderer;
+			
+			let mesh2D = [];
+			let ddong2D = [];
+			
+			
+			var arr2D = [
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0],
+				[0,0,0,0,0,	0,0,0,0,0,	0,0,0,0,0,	0,0,0,0]
+			];
+			var flag_wb = true;
+			var flag_over = false;
+			
+			
+			function fn_reset(){
+				for(var i=0;i<19;i++){
+					for(var j=0;j<19;j++){
+						arr2D[i][j]=0;
+						ddong2D[i][j].position.y = 0;
+					}
+				}
+				flag_wb = true;
+				flag_over = false;
+			}
+			
+			
+			function myclick(obj){
+				if(flag_over){
+					return;
+				}
+				
+				var str_ij = obj.name;
+				var arr_ij = str_ij.split(",");
+				var i = parseInt(arr_ij[0]);
+				var j = parseInt(arr_ij[1]);
+				
+				if(arr2D[i][j]>0){
+					return;
+				}
+				
+				var stone = -1;
+				if(flag_wb){
+					arr2D[i][j]=1;	
+					stone = 1;
+					ddong2D[i][j].material.color.set(0xFFffff);
+				}else{
+					arr2D[i][j]=2;
+					stone = 2;
+					ddong2D[i][j].material.color.set(0x000000);
+				}
+				
+				var up = getUp(i,j,stone);
+				var dw = getDW(i,j,stone);
+				var ri = getRI(i,j,stone);
+				var le = getLE(i,j,stone);
+				var ur = getUR(i,j,stone);
+				var ul = getUL(i,j,stone);
+				var dr = getDR(i,j,stone);
+				var dl = getDL(i,j,stone);
+							
+				var d1 = up + dw + 1;
+				var d2 = ur + dl + 1;
+				var d3 = ri + le + 1;
+				var d4 = ul + dr + 1;
+				
+				ddong2D[i][j].position.y = 30;
+				
+				if(d1==5||d2==5||d3==5||d4==5){
+					if(flag_wb){
+						setTimeout("alert('백돌승리')", 50);
+					}else{
+						setTimeout("alert('흑돌승리')", 50);
+					}
+					flag_over = true;
+					
+				}
+				
+				
+				flag_wb =! flag_wb;
+				
+			}
+			
+			
+			function getUp(i,j,stone){
+				var ret = 0;
+				try {
+					while(true){
+						i--;
+						if(arr2D[i][j]==stone){
+							ret++;
+						}else{
+							return ret;
+						}
+					}
+				} catch (err) {
+					return ret;
+				}
+			}
+			
+			function getDW(i,j,stone){
+				var ret = 0;
+				try {
+					while(true){
+						i++;
+						if(arr2D[i][j]==stone){
+							ret++;
+						}else{
+							return ret;
+						}
+					}
+				} catch (err) {
+					return ret;
+				}
+			}
+			function getRI(i,j,stone){
+				var ret = 0;
+				try {
+					while(true){
+						j++;
+						if(arr2D[i][j]==stone){
+							ret++;
+						}else{
+							return ret;
+						}
+					}
+				} catch (err) {
+					return ret;
+				}
+			}
+			function getLE(i,j,stone){
+				var ret = 0;
+				try {
+					while(true){
+						j--;
+						if(arr2D[i][j]==stone){
+							ret++;
+						}else{
+							return ret;
+						}
+					}
+				} catch (err) {
+					return ret;
+				}
+			}
+			
+			
+			function getUR(i,j,stone){
+				var ret = 0;
+				try {
+					while(true){
+						i--;
+						j++;
+						if(arr2D[i][j]==stone){
+							ret++;
+						}else{
+							return ret;
+						}
+					}
+				} catch (err) {
+					return ret;
+				}
+			}
+			
+			function getUL(i,j,stone){
+				var ret = 0;
+				try {
+					while(true){
+						i--;
+						j--;
+						if(arr2D[i][j]==stone){
+							ret++;
+						}else{
+							return ret;
+						}
+					}
+				} catch (err) {
+					return ret;
+				}
+			}
+			
+			function getDR(i,j,stone){
+				var ret = 0;
+				try {
+					while(true){
+						i++;
+						j++;
+						if(arr2D[i][j]==stone){
+							ret++;
+						}else{
+							return ret;
+						}
+					}
+				} catch (err) {
+					return ret;
+				}
+			}
+			function getDL(i,j,stone){
+				var ret = 0;
+				try {
+					while(true){
+						i++;
+						j--;
+						if(arr2D[i][j]==stone){
+							ret++;
+						}else{
+							return ret;
+						}
+					}
+				} catch (err) {
+					return ret;
+				}
+			}
+			
+			
+			
+
+			init();
+			animate();
+
+			function init() {
+
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.z = 600;
+				camera.position.y = 600;
+				camera.lookAt(0,0,0);
+				console.log("camera.position",camera.position);
+
+				scene = new THREE.Scene();
+				
+				for(var i=0;i<19;i++){
+					var line = [];
+					for(var j=0;j<19;j++){
+						const texture = new THREE.TextureLoader().load('textures/omok/0.png');
+						texture.colorSpace = THREE.SRGBColorSpace;
+						const geometry = new THREE.BoxGeometry( 40, 40, 40 );
+						const material = new THREE.MeshBasicMaterial( { map: texture } );
+						var mesh = new THREE.Mesh( geometry, material );
+						scene.add( mesh );
+						mesh.callback = function(){
+							myclick(this);
+							console.log("test",this.name);
+						}
+						mesh.name = i+","+j;
+						mesh.position.z = i*40 - 40*9;
+						mesh.position.x = j*40 - 40*9;
+						line.push(mesh);						
+					}	
+					mesh2D.push(line);
+				}
+
+				for(var i=0;i<19;i++){
+					var line = [];
+					for(var j=0;j<19;j++){
+						const geometryP = new THREE.CylinderGeometry( 5, 15, 15, 32 ); 
+						const materialP = new THREE.MeshBasicMaterial( {color: 0xffffff,wireframe:true} ); 
+						var meshP = new THREE.Mesh( geometryP, materialP ); 
+						scene.add(meshP);
+						meshP.position.z = i*40 - 40*9;
+						meshP.position.x = j*40 - 40*9;
+						meshP.position.y = 0;
+						line.push(meshP);				
+					}	
+					ddong2D.push(line);
+				}
+
+				
+
+	
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+			
+
+			
+
+
+			function onWindowResize() {
+				console.log("onWindowResize");
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+				
+				requestAnimationFrame( animate );
+
+				renderer.render( scene, camera );
+				
+			}
+			
+			var raycaster = new THREE.Raycaster();
+			var mouse = new THREE.Vector2();
+			
+			function onMouseClick(event){
+				mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+				mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+				
+				raycaster.setFromCamera(mouse, camera);
+				
+				const intersects = raycaster.intersectObjects(scene.children);
+				
+				if(intersects.length>0){
+					intersects[0].object.callback();
+				}
+				renderer.render(scene, camera);
+				
+			}
+			window.addEventListener('click', onMouseClick);
+			window.requestAnimationFrame(onMouseClick);
+			
+			var obj_a = document.querySelector("#my_a");
+			obj_a.addEventListener('click', function(event){
+				console.log("click");
+				fn_reset();
+			});	
+
+		</script>
+		
+
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
